@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+      <activity android:name=".SubActivity" android:screenOrientation="portrait"/>
+   </application>
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
