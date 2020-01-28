@@ -3,7 +3,7 @@ package com.dev.firstapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ public class SubActivity extends AppCompatActivity{
 
         Intent intent = new Intent(this.getIntent());
         String s = intent.getStringExtra("text");
-        TextView textView = (TextView) findViewById(R.id.textview);
-        textView.setText(s);
+        EditText editText = (EditText) findViewById(R.id.title);
+        editText.getText();
     }
 }
