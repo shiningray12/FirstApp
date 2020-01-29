@@ -88,12 +88,14 @@ class CustomTask extends AsyncTask<String, Void, String> {
                         String result = new CustomTask().execute(insertTitle, insertContent, insertDdate, "add").get();
                         if(result.equals("ok")){
                             Toast.makeText(SubActivity.this,"아니옵니다.",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SubActivity.this, SubActivity.class);
-                        }else {
-                            Toast.makeText(SubActivity.this, "등록", Toast.LENGTH_SHORT).show();
                             title.setText("제목입력");
                             content.setText("내용 입력");
                             ddate.setText("날짜입력");
+                        }else {
+                            Toast.makeText(SubActivity.this, "등록", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SubActivity.this, ListViewActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }catch (Exception e){   e.printStackTrace();     }
                     break;
