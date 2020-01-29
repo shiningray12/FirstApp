@@ -43,7 +43,7 @@ class CustomTask extends AsyncTask<String, Void, String>{
     protected String doInBackground(String... strings){
         try{
             String str;
-            URL url = new URL("http://15.164.251.191:8080/FirstApp/Test.jsp");
+            URL url = new URL("http://52.78.173.167:8080/FirstApp/Test.jsp");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");
