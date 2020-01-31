@@ -48,7 +48,7 @@ class CustomTask extends AsyncTask<String, Void, String>{
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-            sendMsg = "id= "+strings[0]+"&pwd="+strings[1]+"&type="+strings[2];
+            sendMsg = "id="+strings[0]+"&pwd="+strings[1]+"&type="+strings[2];
             osw.write(sendMsg);
             osw.flush();
             if(conn.getResponseCode()==conn.HTTP_OK){

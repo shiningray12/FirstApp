@@ -12,12 +12,12 @@
         android:inputType="textPersonName"
         android:text="입력하세요" />
 
-    <EditText
+  <!--  <EditText
         android:id="@+id/ddate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date" />-->
 
     <EditText
         android:id="@+id/content"

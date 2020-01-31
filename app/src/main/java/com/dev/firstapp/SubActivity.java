@@ -10,18 +10,23 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SubActivity extends AppCompatActivity{
-    EditText title , content, ddate;
+    EditText title , content;
     Button insert, modify, delete;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceStat){
         super.onCreate(savedInstanceStat);
@@ -29,7 +34,7 @@ public class SubActivity extends AppCompatActivity{
 
         title = (EditText) findViewById(R.id.title);
         content  = (EditText) findViewById(R.id.content);
-        ddate = (EditText) findViewById(R.id.ddate);
+
 
         insert = (Button) findViewById(R.id.insert);
         modify = (Button) findViewById(R.id.modify);
@@ -52,7 +57,7 @@ class CustomTask extends AsyncTask<String, Void, String> {
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-            sendMsg = "title= "+strings[0]+"&content="+strings[1]+"&ddate="+strings[2]+"&type="+strings[3];
+            sendMsg = "title="+strings[0]+"&content="+strings[1]+"&type="+strings[2];
             osw.write(sendMsg);
             osw.flush();
             if(conn.getResponseCode()==conn.HTTP_OK){
@@ -77,34 +82,29 @@ class CustomTask extends AsyncTask<String, Void, String> {
 }
     View.OnClickListener btnListener2 = new View.OnClickListener(){
         @Override
-        public void onClick (View view){
+        public void onClick (View view) {
             switch(view.getId()){
                 case R.id.insert:
                     String insertTitle = title.getText().toString();
                     String insertContent = content.getText().toString();
-                    String insertDdate = ddate.getText().toString();
-
-                    try{
-                        String result = new CustomTask().execute(insertTitle, insertContent, insertDdate, "add").get();
-                        if(result.equals("ok")){
-                            Toast.makeText(SubActivity.this,"아니옵니다.",Toast.LENGTH_SHORT).show();
-                            title.setText("제목입력");
-                            content.setText("내용 입력");
-                            ddate.setText("날짜입력");
-                        }else {
+                    try {
+                        String result = new CustomTask().execute(insertTitle, insertContent, "add").get();
+                        if (result.equals("ok")) {
                             Toast.makeText(SubActivity.this, "등록", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SubActivity.this, ListViewActivity.class);
                             startActivity(intent);
                             finish();
+                        } else {
+                            Toast.makeText(SubActivity.this, "아니옵니다.", Toast.LENGTH_SHORT).show();
+                            title.setText("제목입력");
+                            content.setText("내용 입력");
+
                         }
-                    }catch (Exception e){   e.printStackTrace();     }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
-
-
-
         }
-
-
     };
 }
